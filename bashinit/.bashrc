@@ -79,18 +79,23 @@ alias l='ls -Alp'
 alias ll='l | less'
 alias lw='ls -1Ap'
 alias lt='ls -Alpt'
+alias lwt='ls -1At'
 alias ..='cd .. && l'
 
 alias gn='gedit --new-window'
+alias ff='firefox'
 
+#################################################
+# Browser downloads directory
+alias dl='cd /stor/Downloads && l'
 #################################################
 # /proj/
 alias proj='cd /proj && l'
-# /srcSRC partition
-alias sdrv='cd /sdrv && l'
+# /stor/ partition
+alias stor='cd /stor && l'
 #################################################
 # Development directory for "motab"
-alias mt='cd /dvl/motab && l'
+alias mt='cd /proj/motab && l'
 
 #################################################
 # U-Boot source dir
@@ -115,6 +120,4 @@ alias ts='cd /src/tisdk/sources && l'
 # minicom using FT232
 alias mic='rm -f /home/erdal/mic.cap && sudo minicom -D /dev/ttyUSB0 -b 115200 --wrap --capturefile=/home/erdal/mic.cap'
 
-#################################################
-# Browser downloads directory
-alias dl='cd /sdrv/Downloads && l'
+
