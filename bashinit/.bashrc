@@ -98,24 +98,10 @@ alias stor='cd /stor && l'
 alias mt='cd /proj/motab && l'
 
 #################################################
-# U-Boot source dir
-alias ubs='cd /src/motab-ubs && l'
-# U-Boot source dir - original
-alias ubso='cd /src/motab-ubso && l'
-# U-Boot source dir - non-pruned (full)
-alias ubsf='cd /src/motab-ubsf && l'
-# U-Boot source output dir
-alias ubo='cd /src/motab-ubo && l'
-#################################################
-# ti-linux source dir
-alias lis='cd /src/ti-linux && l'
-# ti-linux build dir
-alias lio='cd /src/ti-linux_out && l'
-#################################################
 # TISDK build dir
-alias tb='cd /src/tisdk/build && l'
+alias tb='cd /stor/tisdk/build && l'
 # TISDK sources dir
-alias ts='cd /src/tisdk/sources && l'
+alias ts='cd /stor/tisdk/sources && l'
 #################################################
 # minicom using FT232
 alias mic='rm -f /home/erdal/mic.cap && sudo minicom -D /dev/ttyUSB0 -b 115200 --wrap --capturefile=/home/erdal/mic.cap'
