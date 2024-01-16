@@ -3,12 +3,6 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc) for examples
 #
 
-# If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
-
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -79,28 +73,25 @@ set_prompt () {
 
 PROMPT_COMMAND='set_prompt'
 
+alias dtp='sway'
+
 alias l='ls -Alp'
 alias ll='l | less'
 alias lw='ls -1Ap'
-
+alias lt='ls -Alpt'
 alias ..='cd .. && l'
+
+alias gn='gedit --new-window'
+
 #################################################
-# DVL partition
-alias dvl='cd /dvl && l'
-# SRC partition
-alias src='cd /src && l'
+# /proj/
+alias proj='cd /proj && l'
+# /srcSRC partition
+alias sdrv='cd /sdrv && l'
 #################################################
 # Development directory for "motab"
 alias mt='cd /dvl/motab && l'
-# Buildroot output dir
-alias mto='cd /src/motab_out && l'
 
-# Development directory for "Beaglebone Black"
-alias bbb='cd /dvl/bbb && l'
-# Development directory for "Beaglebone Green"
-alias bbg='cd /dvl/bbg && l'
-# Buildroot output dir
-alias bbgo='cd /src/bbg_out && l'
 #################################################
 # U-Boot source dir
 alias ubs='cd /src/motab-ubs && l'
@@ -116,43 +107,14 @@ alias lis='cd /src/ti-linux && l'
 # ti-linux build dir
 alias lio='cd /src/ti-linux_out && l'
 #################################################
-# Buildroot source dir
-alias br='cd /src/buildroot && l'
-#################################################
-# crosstool-ng source dir
-alias ct='cd /src/crosstool-ng && l'
-#################################################
-# Qt5 source dir
-alias qts='cd /src/qts && l'
-# Qt5 build dir
-alias qtb='cd /src/qtb && l'
-# Qt5 target dir
-alias qtt='cd /src/qtt && l'
-# Qt5 host dir
-alias qth='cd /src/qth && l'
-# QtCreator IDE
-alias qt='qtcreator'
-#################################################
-# Poky work dir
-alias pk='cd /src/poky && l'
-#################################################
 # TISDK build dir
 alias tb='cd /src/tisdk/build && l'
 # TISDK sources dir
 alias ts='cd /src/tisdk/sources && l'
 #################################################
+# minicom using FT232
+alias mic='rm -f /home/erdal/mic.cap && sudo minicom -D /dev/ttyUSB0 -b 115200 --wrap --capturefile=/home/erdal/mic.cap'
 
-# Project Saymon directory
-alias sy='cd /dvl/saymon && l'
-# Project Silmon directory
-alias sl='cd /dvl/silmon && l'
-#################################################
-# RAID view status
-alias mds='sudo mdadm --detail /dev/md127'
-#################################################
-# minicom command alias
-alias mic='rm -f /home/erdal/minicom.cap && sudo minicom --wrap --capturefile=/home/erdal/minicom.cap'
 #################################################
 # Browser downloads directory
-alias dl='cd /src/Downloads && l'
-
+alias dl='cd /sdrv/Downloads && l'
