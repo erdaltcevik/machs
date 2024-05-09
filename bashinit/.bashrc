@@ -1,29 +1,32 @@
-#
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc) for examples
-#
+# .bashrc
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
 
-# append to the history file, don't overwrite it
-shopt -s histappend
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-[[ $DISPLAY ]] && shopt -s checkwinsize
+# User specific aliases and functions
+if [ -d ~/.bashrc.d ]; then
+	for rc in ~/.bashrc.d/*; do
+		if [ -f "$rc" ]; then
+			. "$rc"
+		fi
+	done
+fi
 
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
-#shopt -s globstar
+unset rc
 
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+#########################################################################################
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -73,7 +76,7 @@ set_prompt () {
 
 PROMPT_COMMAND='set_prompt'
 
-alias dtp='sway'
+alias dtp='WLR_NO_HARDWARE_CURSORS=1 sway --unsupported-gpu'
 
 alias l='ls -Alp'
 alias ll='l | less'
@@ -85,6 +88,12 @@ alias ..='cd .. && l'
 alias gn='gedit --new-window'
 alias ff='firefox'
 
+alias sshsrv='ssh erdal@srv1fdr'
+
+alias expa='expand -t 2 '
+
+alias ecli='cd ~/motab-sdk && . environment-setup-armv7at2hf-neon-oe-linux-gnueabi && eclipse'
+
 #################################################
 # Browser downloads directory
 alias dl='cd /stor/Downloads && l'
@@ -94,14 +103,18 @@ alias proj='cd /proj && l'
 # /stor/ partition
 alias stor='cd /stor && l'
 #################################################
-# Development directory for "motab"
-alias mt='cd /proj/motab && l'
-
+# motab-arago build
+alias mab='cd /stor/motab-arago/build && l'
+# motab-arago sources
+alias mas='cd /stor/motab-arago/sources && l'
+# motab-arago work
+alias maw='cd /stor/motab-arago/build/arago-tmp-default-glibc/work && l'
+# motab-arago dvl deploy
+alias mad='cd /stor/motab-arago/build/deploy-motab/dvl && l'
 #################################################
-# TISDK build dir
-alias tb='cd /stor/tisdk/build && l'
-# TISDK sources dir
-alias ts='cd /stor/tisdk/sources && l'
+# Yocto layer for motab
+alias metam='cd /proj/meta-motab && l'
+
 #################################################
 # minicom using FT232
 alias mic='rm -f /home/erdal/mic.cap && sudo minicom -D /dev/ttyUSB0 -b 115200 --wrap --capturefile=/home/erdal/mic.cap'
